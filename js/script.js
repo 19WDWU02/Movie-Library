@@ -44,5 +44,85 @@ var movies = [
         length: 178,
         poster: 'lotr.jpg'
     }
-]
+];
 console.log(movies);
+var moviesList = document.getElementById('moviesList');
+
+for (var i = 0; i < movies.length; i++) {
+    // console.log(movies[i]);
+    var movie = movies[i];
+    // console.log(movie.title);
+    // document.getElementById('moviesList').innerHTML += '<p>'+movie.title+'</p>';
+
+
+    // // Way #1
+    // moviesList.innerHTML += '<div class="col-12 col-sm-6 col-md-4">';
+    //     moviesList.innerHTML += '<div class="card">';
+    //
+    //     moviesList.innerHTML += '</div>';
+    // moviesList.innerHTML += '</div>';
+
+    // // Way #2
+    // var movieCard = '<div class="col-12 col-sm-6 col-md-4">';
+    //     movieCard += '<div class="card">';
+    //         movieCard += '<div class="card-body">';
+    //             movieCard += '<h5 class="card-title">'+movie.title+'</h5>';
+    //         movieCard += '</div>';
+    //     movieCard += '</div>';
+    // movieCard += '</div>';
+    //
+    // console.log(movieCard);
+    // moviesList.innerHTML += movieCard;
+
+    // // Way #3
+    var columns = document.createElement('div');
+    var columnsAttr = document.createAttribute('class');
+    columnsAttr.value = 'col-12 col-sm-6 col-md-4';
+    columns.setAttributeNode(columnsAttr);
+
+    var card = document.createElement('div');
+    var cardAttr = document.createAttribute('class');
+    cardAttr.value = 'card';
+    card.setAttributeNode(cardAttr);
+
+
+    var cardBody = document.createElement('div');
+    var cardBodyAttr = document.createAttribute('class');
+    cardBodyAttr.value = 'card-body';
+    cardBody.setAttributeNode(cardBodyAttr);
+
+    var cardTitle = document.createElement('h5');
+    var cardTitleAttr = document.createAttribute('class');
+    cardTitleAttr.value = 'card-title';
+    cardTitle.setAttributeNode(cardTitleAttr);
+    var cardTitleText = document.createTextNode(movie.title);
+
+    cardTitle.appendChild(cardTitleText);
+    cardBody.appendChild(cardTitle);
+    card.appendChild(cardBody);
+    columns.appendChild(card);
+
+
+    moviesList.appendChild(columns);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
