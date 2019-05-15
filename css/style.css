@@ -10,6 +10,7 @@ body{
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
     display: none;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
 }
@@ -28,6 +29,7 @@ body{
     top: 0;
     margin: 10px;
     color: #2c3e50;
+    z-index: 100000000;
 }
 
 #close:hover{

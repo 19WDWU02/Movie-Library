@@ -137,9 +137,16 @@ function showMoreMovie(){
 var movieThumbnails = document.getElementsByClassName('movieThumb2');
 for (var i = 0; i < movieThumbnails.length; i++) {
     // console.log(movieThumbnails[i]);
+
     movieThumbnails[i].onclick = showMoreMovie;
+
     // movieThumbnails[i].onclick = function(){
     //     showMoreMovie();
+    // };
+
+    // movieThumbnails[i].onclick = function(){
+    //     document.getElementById('moviePopUp').style.display = 'flex';
+    //     document.body.style.overflow = 'hidden';
     // };
 }
 
