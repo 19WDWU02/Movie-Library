@@ -56,6 +56,7 @@ var moviesList = document.getElementById('moviesList');
 for (var i = 0; i < movies.length; i++) {
     // console.log(movies[i]);
     var movie = movies[i];
+
     // console.log(movie.title);
     // document.getElementById('moviesList').innerHTML += '<p>'+movie.title+'</p>';
 
@@ -135,10 +136,21 @@ for (var i = 0; i < movies.length; i++) {
 
 
 function showMoreMovie(movieNumber){
+    var singleMovie;
     // console.log('you have clicked on a movie');
     console.log(movieNumber);
+    for (var i = 0; i < movies.length; i++) {
 
+        if(movies[i].id === movieNumber){
+            console.log(movies[i]);
+            singleMovie = movies[i];
+            break;
+        }
 
+    }
+    console.log(singleMovie);
+    document.getElementById('posterImage').src = 'images/posters/'+singleMovie.poster;
+    document.getElementById('movieTitle').innerText = singleMovie.title;
 
 
 
