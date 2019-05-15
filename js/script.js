@@ -81,9 +81,10 @@ for (var i = 0; i < movies.length; i++) {
         genreClass = 'border-dark';
     }
 
+
     var movieCard = '<div class="col-12 col-sm-6 col-md-3 mb-3 text-center">';
-        // movieCard += '<div class="movieThumb card '+genreClass+' " onclick="showMoreMovie();" >';
-        movieCard += '<div class="movieThumb movieThumb2 card '+genreClass+' " >';
+        movieCard += '<div class="movieThumb card '+genreClass+' " onclick="showMoreMovie('+movie.id+');" >';
+        // movieCard += '<div class="movieThumb movieThumb2 card '+genreClass+' " data-id="'+movie.id+'">';
             movieCard += '<img src="images/posters/'+movie.poster+'" class="card-img-top" alt="">';
             movieCard += '<div class="card-body">';
                 movieCard += '<h5 class="card-title">'+movie.title+'</h5>';
@@ -128,21 +129,53 @@ for (var i = 0; i < movies.length; i++) {
 }
 
 
-function showMoreMovie(){
+
+
+
+
+
+function showMoreMovie(movieNumber){
     // console.log('you have clicked on a movie');
+    console.log(movieNumber);
+
+
+
+
+
+
+
     document.getElementById('moviePopUp').style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var movieThumbnails = document.getElementsByClassName('movieThumb2');
 for (var i = 0; i < movieThumbnails.length; i++) {
     // console.log(movieThumbnails[i]);
+    // console.log(movieThumbnails[i].dataset.id);
 
-    movieThumbnails[i].onclick = showMoreMovie;
+    // movieThumbnails[i].onclick = showMoreMovie;
 
-    // movieThumbnails[i].onclick = function(){
-    //     showMoreMovie();
-    // };
+    movieThumbnails[i].onclick = function(){
+        var id = parseInt(this.dataset.id);
+        showMoreMovie(id);
+    };
 
     // movieThumbnails[i].onclick = function(){
     //     document.getElementById('moviePopUp').style.display = 'flex';
