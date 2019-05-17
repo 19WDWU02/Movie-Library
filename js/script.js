@@ -60,7 +60,7 @@ var movies = [
         genre: ['adventure', 'drama', 'fantasy']
     }
 ];
-console.log(movies);
+
 var moviesList = document.getElementById('moviesList');
 
 for (var i = 0; i < movies.length; i++) {
@@ -70,14 +70,12 @@ for (var i = 0; i < movies.length; i++) {
     // console.log(movie.title);
     // document.getElementById('moviesList').innerHTML += '<p>'+movie.title+'</p>';
 
-
     // // Way #1
     // moviesList.innerHTML += '<div class="col-12 col-sm-6 col-md-4">';
     //     moviesList.innerHTML += '<div class="card">';
     //
     //     moviesList.innerHTML += '</div>';
     // moviesList.innerHTML += '</div>';
-
 
     // // Way #2
     var genreClass = getGenreColour(movie.genre[0]);
@@ -93,10 +91,9 @@ for (var i = 0; i < movies.length; i++) {
     //     genreClass = 'border-dark';
     // }
 
-
     var movieCard = '<div class="col-12 col-sm-6 col-md-3 mb-3 text-center">';
         movieCard += '<div class="movieThumb card h-100 border-'+genreClass+' " onclick="showMoreMovie('+movie.id+');" >';
-        // movieCard += '<div class="movieThumb movieThumb2 card h-100 '+genreClass+' " data-id="'+movie.id+'">';
+        // movieCard += '<div class="movieThumb movieThumb2 card h-100 border-'+genreClass+' " data-id="'+movie.id+'">';
             movieCard += '<img src="images/posters/'+movie.poster+'" class="card-img-top" alt="">';
             movieCard += '<div class="card-body">';
                 movieCard += '<h5 class="card-title">'+movie.title+'</h5>';
@@ -136,37 +133,24 @@ for (var i = 0; i < movies.length; i++) {
     // columns.appendChild(card);
     //
     // moviesList.appendChild(columns);
-
-
 }
-
-
-
-
-
-
 
 function showMoreMovie(movieNumber){
     var singleMovie;
-    // console.log('you have clicked on a movie');
-    console.log(movieNumber);
     for (var i = 0; i < movies.length; i++) {
 
         if(movies[i].id === movieNumber){
-            console.log(movies[i]);
             singleMovie = movies[i];
             break;
         }
 
     }
-    console.log(singleMovie);
     document.getElementById('posterImage').src = 'images/posters/'+singleMovie.poster;
     document.getElementById('movieTitle').innerText = singleMovie.title;
     document.getElementById('movieYear').innerText = singleMovie.year;
 
     document.getElementById('movieDirectors').innerHTML = '';
     for (var i = 0; i < singleMovie.directors.length; i++) {
-        console.log(singleMovie.directors[i]);
         document.getElementById('movieDirectors').innerHTML += '<li class="list-inline-item">'+singleMovie.directors[i]+'</li>';
     }
 
@@ -174,45 +158,15 @@ function showMoreMovie(movieNumber){
     document.getElementById('movieLength').innerText = singleMovie.movieLength;
 
     document.getElementById('movieGenre').innerHTML = '';
-    // var genreColour;
 
     for (var i = 0; i < singleMovie.genre.length; i++) {
         var genreColour = getGenreColour(singleMovie.genre[i]);
-        // if(singleMovie.genre[i] === 'action'){
-        //     genreColour = 'badge-primary';
-        // } else if(singleMovie.genre[i] === 'adventure'){
-        //     genreColour = 'badge-secondary';
-        // } else if(singleMovie.genre[i] === 'sci-fi'){
-        //     genreColour = 'badge-warning';
-        // } else {
-        //     genreColour = 'badge-dark';
-        // }
-
         document.getElementById('movieGenre').innerHTML += '<span class="badge badge-'+genreColour+' mr-1">'+singleMovie.genre[i]+'</span>';
     }
-
-
 
     document.getElementById('moviePopUp').style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 var movieThumbnails = document.getElementsByClassName('movieThumb2');
 for (var i = 0; i < movieThumbnails.length; i++) {
@@ -237,10 +191,7 @@ document.getElementById('close').onclick = function(){
     document.body.style.overflow = 'scroll';
 }
 
-
-
 function getGenreColour(genre){
-
     if(genre === 'action'){
         return 'primary';
     } else if(genre === 'animation'){
@@ -252,5 +203,4 @@ function getGenreColour(genre){
     }else {
         return 'dark';
     }
-
 }
