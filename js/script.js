@@ -152,8 +152,8 @@ for (var i = 0; i < movies.length; i++) {
     // }
 
     var movieCard = '<div class="col-12 col-sm-6 col-md-3 mb-3 text-center">';
-        movieCard += '<div class="movieThumb card h-100 border-'+genreClass+' " onclick="showMoreMovie('+movie.id+');" >';
-        // movieCard += '<div class="movieThumb movieThumb2 card h-100 border-'+genreClass+' " data-id="'+movie.id+'">';
+        // movieCard += '<div class="movieThumb card h-100 border-'+genreClass+' " onclick="showMoreMovie('+movie.id+');" >';
+        movieCard += '<div class="movieThumb movieThumb2 card h-100 border-'+genreClass+' " data-id="'+movie.id+'">';
             movieCard += '<img src="images/posters/'+movie.poster+'" class="card-img-top" alt="">';
             movieCard += '<div class="card-body">';
                 movieCard += '<h5 class="card-title">'+movie.title+'</h5>';

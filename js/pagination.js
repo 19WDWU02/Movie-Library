@@ -123,4 +123,38 @@ var movies = [
 
 var maxNumberOnScreen = 8;
 var numberOfPages = Math.ceil(movies.length / maxNumberOnScreen);
-console.log(numberOfPages);
+
+if(numberOfPages > 1){
+    var pagination = document.getElementById('paginationMovies');
+    for (var i = 0; i < numberOfPages; i++) {
+        pagination.innerHTML += '<li class="page-item"><a class="page-link" href="#">'+(i+1)+'</a></li>';
+    }
+}
+
+if(maxNumberOnScreen > movies.length){
+    // console.log("There are not enough movies in the database to fill the entire screen");
+    showMovieThumbnails(0, movies.length);
+} else {
+    // console.log("there is more movies than the max on screen");
+    showMovieThumbnails(0, maxNumberOnScreen);
+}
+
+
+function showMovieThumbnails(start, end){
+    console.log(start);
+    console.log(end);
+    for (var i = start; i < end; i++) {
+        var movie = movies[i];
+
+        var movieCard = '<div class="col-12 col-sm-6 col-md-3 mb-3 text-center">';
+            movieCard += '<div class="movieThumb movieThumb2 card h-100" data-id="'+movie.id+'">';
+                movieCard += '<img src="images/posters/'+movie.poster+'" class="card-img-top" alt="">';
+                movieCard += '<div class="card-body">';
+                    movieCard += '<h5 class="card-title">'+movie.title+'</h5>';
+                movieCard += '</div>';
+            movieCard += '</div>';
+        movieCard += '</div>';
+
+        document.getElementById('moviesList').innerHTML += movieCard;
+    }
+}
