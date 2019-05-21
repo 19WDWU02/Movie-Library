@@ -126,9 +126,13 @@ var numberOfPages = Math.ceil(movies.length / maxNumberOnScreen);
 
 if(numberOfPages > 1){
     var pagination = document.getElementById('paginationMovies');
-    for (var i = 0; i < numberOfPages; i++) {
-        pagination.innerHTML += '<li class="page-item"><a class="page-link" href="#">'+(i+1)+'</a></li>';
+    for (var a = 0; a < numberOfPages; a++) {
+        pagination.innerHTML += '<li class="page-item"><a class="page-link" data-page="'+(a+1)+'" href="#" onclick="clickOnPagination('+(a+1)+')">'+(a+1)+'</a></li>';
     }
+}
+
+function clickOnPagination(num){
+    console.log('page clicked on ' + num);
 }
 
 if(maxNumberOnScreen > movies.length){
@@ -141,8 +145,8 @@ if(maxNumberOnScreen > movies.length){
 
 
 function showMovieThumbnails(start, end){
-    console.log(start);
-    console.log(end);
+    // console.log(start);
+    // console.log(end);
     for (var i = start; i < end; i++) {
         var movie = movies[i];
 
