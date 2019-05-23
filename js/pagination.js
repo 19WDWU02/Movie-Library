@@ -122,15 +122,9 @@ var movies = [
 ];
 
 var maxNumberOnScreen = 8;
-var numberOfPages = Math.ceil(movies.length / maxNumberOnScreen);
-var currentTab = 'Movies';
 
-if(numberOfPages > 1){
-    var pagination = document.getElementById('paginationMovies');
-    for (var a = 0; a < numberOfPages; a++) {
-        pagination.innerHTML += '<li class="page-item"><a class="page-link" data-page="'+(a+1)+'" href="#" onclick="clickOnPagination('+(a+1)+')">'+(a+1)+'</a></li>';
-    }
-}
+var currentTab = 'Movies';
+var pageContainer = document.getElementById('pageContainer');
 
 function clickOnPagination(num){
     console.log('page clicked on ' + num);
@@ -143,16 +137,7 @@ function clickOnPagination(num){
     showMovieThumbnails(min, max);
 }
 
-if(maxNumberOnScreen > movies.length){
-    showMovieThumbnails(0, movies.length);
-} else {
-    showMovieThumbnails(0, maxNumberOnScreen);
-}
-
-
 function showMovieThumbnails(start, end){
-    // console.log(start);
-    // console.log(end);
     document.getElementById('moviesList').innerHTML = '';
     for (var i = start; i < end; i++) {
         var movie = movies[i];
@@ -210,7 +195,6 @@ document.getElementById('close').onclick = function(){
     document.body.style.overflow = 'scroll';
 }
 
-
 var pageTabs = document.getElementsByClassName('page-tab');
 for (var i = 0; i < pageTabs.length; i++) {
     pageTabs[i].onclick = function(){
@@ -235,16 +219,39 @@ for (var i = 0; i < pageTabs.length; i++) {
     };
 }
 
-
 function changeTab(tabName){
     if(currentTab === tabName){
         console.log('you are still on the same page');
     } else {
         currentTab = tabName;
         console.log('Change to the ' + tabName + ' page');
-
-
-        // All our code needed to change the page
-
+        pageContainer.innerHTML = '';
+        if(tabName === 'Directors'){
+            showDirectors();
+        } else if(tabName === 'Movies'){
+            pageContainer.innerHTML = '<div id="moviesList" class="row"></div>';
+            pageContainer.innerHTML += '<div class="row"><div class="col"><nav><ul id="paginationMovies" class="pagination justify-content-end"></ul></nav></div></div>';
+            showMovies();
+        }
     }
 }
+
+function showDirectors(){
+    pageContainer.innerHTML = '<div class="row"><div class="col"><h2 class="display-4">Directors</h2></div></div>';
+}
+
+function showMovies(){
+    var numberOfPages = Math.ceil(movies.length / maxNumberOnScreen);
+    if(numberOfPages > 1){
+        var pagination = document.getElementById('paginationMovies');
+        for (var a = 0; a < numberOfPages; a++) {
+            pagination.innerHTML += '<li class="page-item"><a class="page-link" data-page="'+(a+1)+'" href="#" onclick="clickOnPagination('+(a+1)+')">'+(a+1)+'</a></li>';
+        }
+    }
+    if(maxNumberOnScreen > movies.length){
+        showMovieThumbnails(0, movies.length);
+    } else {
+        showMovieThumbnails(0, maxNumberOnScreen);
+    }
+}
+showMovies();
